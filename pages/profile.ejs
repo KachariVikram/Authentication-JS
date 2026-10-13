@@ -1,0 +1,26 @@
+<%- include('./style.ejs') %>
+<body>
+
+    <div class="auth-container">
+        <!-- Avatar Graphic Header Component -->
+        <div class="avatar-circle">👤</div>
+        <h1>User Dashboard</h1>
+
+        <!-- Username Data Row -->
+        <div class="profile-data-block">
+            <p class="profile-label">Account Username</p>
+            <p class="profile-value"><%= username %></p>
+        </div>
+
+        <!-- Email Data Row -->
+        <div class="profile-data-block">
+            <p class="profile-label">Email Address</p>
+            <p class="profile-value"><%= email %></p>
+        </div>
+
+        <!-- System Logout Action Trigger -->
+        <a href="/logout" class="search-btn">Log Out</a>
+    </div>
+
+</body>
+</html>

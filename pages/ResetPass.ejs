@@ -1,0 +1,52 @@
+<%- include('./style.ejs') %>
+<body>
+
+    <div class="auth-container">
+        <h1>Change Password</h1>
+        
+        <form action="/update-password" method="POST">
+            <!-- Hidden context reference mapping variables -->
+            <input type="hidden" name="email" value="<%= email %>">
+
+            <!-- New Password Field -->
+            <div class="form-group">
+                <label for="newPassword">New Password</label>
+                <input 
+                    type="password" 
+                    id="newPassword"
+                    name="newPassword" 
+                    class="search-input" 
+                    placeholder="Enter new password..." 
+                    required 
+                >
+            </div>
+
+            <!-- Confirm New Password Field -->
+            <div class="form-group">
+                <label for="confirmPassword">Confirm New Password</label>
+                <input 
+                    type="password" 
+                    id="confirmPassword"
+                    name="confirmPassword" 
+                    class="search-input" 
+                    placeholder="Repeat new password..." 
+                    required 
+                >
+            </div>
+            
+            <!-- Submit Update Trigger Button -->
+            <button type="submit" class="search-btn" style="background-color: #0f172a;">
+                Confirm Change
+            </button>
+        </form>
+
+        <!-- Dynamic Feedback Box -->
+        <% if (locals.message) { %>
+            <div class="error-box" style="background-color: #fef2f2; border-color: #fee2e2;">
+                <span class="error-msg" style="color: #ef4444;">⚠️ <%= message %></span>
+            </div>
+        <% } %>
+    </div>
+
+</body>
+</html>

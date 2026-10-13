@@ -1,0 +1,98 @@
+<%- include('./style.ejs') %>
+<body>
+
+    <div class="auth-container">
+        <h1>Create Account</h1>
+        
+        <form action="/username" method="POST">
+            <!-- 1. Dedicated Username Field -->
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input 
+                    type="text" 
+                    id="username"
+                    name="username" 
+                    class="search-input" 
+                    placeholder="Choose a username..." 
+                    required 
+                    autocomplete="off"
+                    value="<%= locals.username ? username : '' %>"
+                >
+            </div>
+
+            <!-- 2. Dedicated Email Field -->
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input 
+                    type="email" 
+                    id="email"
+                    name="email" 
+                    class="search-input" 
+                    placeholder="Enter email address..." 
+                    required 
+                    autocomplete="off"
+                    value="<%= locals.email ? email : '' %>"
+                >
+            </div>
+            
+            <!-- 3. Password Field -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input 
+                    type="password" 
+                    id="password"
+                    name="password" 
+                    class="search-input" 
+                    placeholder="Create a strong password..." 
+                    required 
+                    value="<%= locals.password ? password : '' %>"
+                >
+            </div>
+
+            <!-- BUTTON 1: Request OTP -->
+            <button type="submit" name="action" value="request_otp" class="search-btn" style="background-color: #0284c7; margin-bottom: 1.5rem;">
+                Request OTP
+            </button>
+
+            <!-- Hardcoded OTP Input Block -->
+            <div class="form-group" style="background: #f8fafc; padding: 1rem; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <label for="otp" style="color: #0f172a;">One-Time Verification Passcode (OTP)</label>
+                <input 
+                    type="text" 
+                    id="otp"
+                    name="otp" 
+                    class="search-input" 
+                    placeholder="******" 
+                    maxlength="6"
+                    autocomplete="off"
+                    style="text-align: center; letter-spacing: 0.2em; font-weight: bold; font-size: 1.2rem;"
+                >
+                <small style="color: #64748b; font-size: 0.75rem; margin-top: 6px; display: block; text-align: center; line-height: 1.4;">
+                    Click "Request OTP" above first, then verify the code here.
+                </small>
+            </div>
+            
+            <!-- BUTTON 2: Verify OTP Below Field -->
+            <button type="submit" name="action" value="verify_otp" class="search-btn" style="background-color: #10b981;">
+                Verify & Complete
+            </button>
+            
+            <a href="/login" class="auth-switch-link">Already have an account? Log In</a>
+        </form>
+
+        <!-- Dynamic System Alert Feedback Alerts Box -->
+        <% if (locals.message) { %>
+            <% if (locals.isSuccess) { %>
+                <div class="error-box" style="background-color: #f0fdf4; border-color: #bbf7d0;">
+                    <span class="error-msg" style="color: #16a34a;">✉️ <%= message %></span>
+                </div>
+            <% } else { %>
+                <div class="error-box" style="background-color: #fef2f2; border-color: #fee2e2;">
+                    <span class="error-msg" style="color: #ef4444;">⚠️ <%= message %></span>
+                </div>
+            <% } %>
+        <% } %>
+    </div>
+
+</body>
+</html>
